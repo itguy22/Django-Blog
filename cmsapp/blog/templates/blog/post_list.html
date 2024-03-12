@@ -1,16 +1,18 @@
-<!-- templates/blog/post_list.html -->
 {% extends 'base.html' %}
 
 {% block content %}
 <div class="container mt-3">
     <h2>Blog Posts</h2>
     <a href="{% url 'post_new' %}" class="btn btn-primary">Add Post</a>
-    <div class="list-group mt-3">
+    <ul class="list-group mt-3">
         {% for post in object_list %}
-        <a href="{% url 'post_detail' post.pk %}" class="list-group-item list-group-item-action">
-            {{ post.title }}
-        </a>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <a href="{% url 'post_detail' post.pk %}" class="me-auto">
+                {{ post.title }}
+            </a>
+            <a href="{% url 'post_edit' post.pk %}" class="btn btn-secondary btn-sm">Edit</a>
+        </li>
         {% endfor %}
-    </div>
+    </ul>
 </div>
 {% endblock %}
